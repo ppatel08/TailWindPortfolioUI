@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TailWind Portfolio Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Tailwind CSS -->
+
+
+    <script>
+
+        tailwind.config = {
+            theme: {
+                extend: {
+                    screens: {
+                        'small': { 'max': '767px' },
+                        // => @media (min-width: 640px and max-width: 767px) { ... }
+
+                        'medium': { 'min': '768px', 'max': '1023px' },
+                        // => @media (min-width: 768px and max-width: 1023px) { ... }
+
+                        'large': { 'min': '1024px', 'max': '1279px' },
+                        // => @media (min-width: 1024px and max-width: 1279px) { ... }
+
+                        'xlarge': { 'min': '1280px' },
+
+                    },
+                    colors: {
+                        sidebar: '#111418',
+                        sidebarLink: '#fff',
+                        lightGray: '#dee3e4'
+
+                    },
+                    fontFamily: {
+                        'roboto': ['Roboto', 'san-serif'],
+                        'poppins': ['Poppins', 'san-serif']
+                    },
+                    padding: {
+                        '4.5rem': '4.5rem'
+                    },
+                    maxWidth: {
+                        '1/2': '1320px',
+                    },
+                    fontSize: {
+                        'sectionBackgroundText': '8.25rem'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- How to use @apply for class to be not reusable -->
+
+</head>
+
+<body>
+
+
+
+    <!-- component -->
+    <!-- <section id="bottom-navigation" class="md:hidden block fixed inset-x-0 bottom-0 z-10 bg-white shadow"> // if shown only tablet/mobile-->
+    <section id="bottom-navigation"
+        class="xlarge:hidden large:hidden medium:visible small:visible  fixed inset-x-0 bottom-0 z-10 bg-white shadow">
+        <div id="tabs" class="flex justify-between">
+            <a href="#"
+                class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
+                <svg width="25" height="25" viewBox="0 0 42 42" class="inline-block mb-1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <path
+                            d="M21.0847458,3.38674884 C17.8305085,7.08474576 17.8305085,10.7827427 21.0847458,14.4807396 C24.3389831,18.1787365 24.3389831,22.5701079 21.0847458,27.6548536 L21.0847458,42 L8.06779661,41.3066256 L6,38.5331279 L6,26.2681048 L6,17.2542373 L8.88135593,12.4006163 L21.0847458,2 L21.0847458,3.38674884 Z"
+                            fill="currentColor" fill-opacity="0.1"></path>
+                        <path
+                            d="M11,8 L33,8 L11,8 Z M39,17 L39,36 C39,39.3137085 36.3137085,42 33,42 L11,42 C7.6862915,42 5,39.3137085 5,36 L5,17 L7,17 L7,36 C7,38.209139 8.790861,40 11,40 L33,40 C35.209139,40 37,38.209139 37,36 L37,17 L39,17 Z"
+                            fill="currentColor"></path>
+                        <path
+                            d="M22,27 C25.3137085,27 28,29.6862915 28,33 L28,41 L16,41 L16,33 C16,29.6862915 18.6862915,27 22,27 Z"
+                            stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.1"></path>
+                        <rect fill="currentColor"
+                            transform="translate(32.000000, 11.313708) scale(-1, 1) rotate(-45.000000) translate(-32.000000, -11.313708) "
+                            x="17" y="10.3137085" width="30" height="2" rx="1"></rect>
+                        <rect fill="currentColor"
+                            transform="translate(12.000000, 11.313708) rotate(-45.000000) translate(-12.000000, -11.313708) "
+                            x="-3" y="10.3137085" width="30" height="2" rx="1"></rect>
+                    </g>
+                </svg>
+                <span class="tab tab-home block text-xs">Home</span>
+            </a>
+            <a href="#"
+                class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
+                <svg width="25" height="25" viewBox="0 0 42 42" class="inline-block mb-1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <path
+                            d="M14.7118754,20.0876892 L8.03575361,20.0876892 C5.82661462,20.0876892 4.03575361,18.2968282 4.03575361,16.0876892 L4.03575361,12.031922 C4.03575361,8.1480343 6.79157254,4.90780265 10.4544842,4.15995321 C8.87553278,8.5612583 8.1226025,14.3600511 10.9452499,15.5413938 C13.710306,16.6986332 14.5947501,18.3118357 14.7118754,20.0876892 Z M14.2420017,23.8186831 C13.515543,27.1052019 12.7414284,30.2811559 18.0438552,31.7330419 L18.0438552,33.4450645 C18.0438552,35.6542035 16.2529942,37.4450645 14.0438552,37.4450645 L9.90612103,37.4450645 C6.14196811,37.4450645 3.09051926,34.3936157 3.09051926,30.6294627 L3.09051926,27.813861 C3.09051926,25.604722 4.88138026,23.813861 7.09051926,23.813861 L14.0438552,23.813861 C14.1102948,23.813861 14.1763561,23.8154808 14.2420017,23.8186831 Z M20.7553776,32.160536 C23.9336213,32.1190063 23.9061943,29.4103976 33.8698747,31.1666916 C34.7935223,31.3295026 35.9925894,31.0627305 37.3154077,30.4407183 C37.09778,34.8980343 33.4149547,38.4450645 28.9036761,38.4450645 C24.9909035,38.4450645 21.701346,35.7767637 20.7553776,32.160536 Z"
+                            fill="currentColor" opacity="0.1"></path>
+                        <g transform="translate(2.000000, 3.000000)">
+                            <path
+                                d="M8.5,1 C4.35786438,1 1,4.35786438 1,8.5 L1,13 C1,14.6568542 2.34314575,16 4,16 L13,16 C14.6568542,16 16,14.6568542 16,13 L16,4 C16,2.34314575 14.6568542,1 13,1 L8.5,1 Z"
+                                stroke="currentColor" stroke-width="2"></path>
+                            <path
+                                d="M4,20 C2.34314575,20 1,21.3431458 1,23 L1,27.5 C1,31.6421356 4.35786438,35 8.5,35 L13,35 C14.6568542,35 16,33.6568542 16,32 L16,23 C16,21.3431458 14.6568542,20 13,20 L4,20 Z"
+                                stroke="currentColor" stroke-width="2"></path>
+                            <path
+                                d="M23,1 C21.3431458,1 20,2.34314575 20,4 L20,13 C20,14.6568542 21.3431458,16 23,16 L32,16 C33.6568542,16 35,14.6568542 35,13 L35,8.5 C35,4.35786438 31.6421356,1 27.5,1 L23,1 Z"
+                                stroke="currentColor" stroke-width="2"></path>
+                            <path
+                                d="M34.5825451,33.4769886 L38.3146092,33.4322291 C38.8602707,33.4256848 39.3079219,33.8627257 39.3144662,34.4083873 C39.3145136,34.4123369 39.3145372,34.4162868 39.3145372,34.4202367 L39.3145372,34.432158 C39.3145372,34.9797651 38.8740974,35.425519 38.3265296,35.4320861 L34.5944655,35.4768456 C34.048804,35.4833899 33.6011528,35.046349 33.5946085,34.5006874 C33.5945611,34.4967378 33.5945375,34.4927879 33.5945375,34.488838 L33.5945375,34.4769167 C33.5945375,33.9293096 34.0349773,33.4835557 34.5825451,33.4769886 Z"
+                                fill="currentColor"
+                                transform="translate(36.454537, 34.454537) rotate(-315.000000) translate(-36.454537, -34.454537) ">
+                            </path>
+                            <circle stroke="currentColor" stroke-width="2" cx="27.5" cy="27.5" r="7.5"></circle>
+                        </g>
+                    </g>
+                </svg>
+                <span class="tab tab-kategori block text-xs">Category</span>
+            </a>
+            <a href="#"
+                class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
+                <svg width="25" height="25" viewBox="0 0 42 42" class="inline-block mb-1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <path
+                            d="M20.5890101,0.254646884 C12.8696785,5.50211755 8.0025785,14.258415 14.1941217,18.8708225 C23.16683,25.5550669 13.3362326,40.2698884 33.1021758,38.4149164 C29.6814884,40.8311956 25.5065164,42.2507054 21,42.2507054 C9.40202025,42.2507054 0,32.8486852 0,21.2507054 C0,9.79003409 9.18071714,0.473634138 20.5890101,0.254646884 Z"
+                            fill="currentColor" opacity="0.1"></path>
+                        <path
+                            d="M25.9500282,20.3643496 L22.4308312,38.2677802 C22.3775703,38.5387376 22.1147395,38.7152155 21.8437821,38.6619546 C21.6570955,38.6252584 21.507413,38.4857901 21.4576354,38.3021581 L16.5951895,20.3643496 L20.099732,4.44663907 C20.1385204,4.27046145 20.2692032,4.12883813 20.4417012,4.07604096 C20.7057521,3.99522179 20.9853245,4.14376046 21.0661436,4.40781135 L25.9500282,20.3643496 Z M21.3022963,22.2852638 C22.4068658,22.2852638 23.3022963,21.3898333 23.3022963,20.2852638 C23.3022963,19.1806943 22.4068658,18.2852638 21.3022963,18.2852638 C20.1977268,18.2852638 19.3022963,19.1806943 19.3022963,20.2852638 C19.3022963,21.3898333 20.1977268,22.2852638 21.3022963,22.2852638 Z"
+                            fill="currentColor"
+                            transform="translate(21.272609, 20.629524) rotate(-315.000000) translate(-21.272609, -20.629524) ">
+                        </path>
+                        <circle stroke="currentColor" stroke-width="2" cx="21" cy="21" r="20"></circle>
+                    </g>
+                </svg>
+                <span class="tab tab-explore block text-xs">Explore</span>
+            </a>
+            <a href="#"
+                class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
+                <svg width="25" height="25" viewBox="0 0 42 42" class="inline-block mb-1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <path
+                            d="M14.7118754,20.0876892 L8.03575361,20.0876892 C5.82661462,20.0876892 4.03575361,18.2968282 4.03575361,16.0876892 L4.03575361,12.031922 C4.03575361,8.1480343 6.79157254,4.90780265 10.4544842,4.15995321 C8.87553278,8.5612583 8.1226025,14.3600511 10.9452499,15.5413938 C13.710306,16.6986332 14.5947501,18.3118357 14.7118754,20.0876892 Z M14.2420017,23.8186831 C13.515543,27.1052019 12.7414284,30.2811559 18.0438552,31.7330419 L18.0438552,33.4450645 C18.0438552,35.6542035 16.2529942,37.4450645 14.0438552,37.4450645 L9.90612103,37.4450645 C6.14196811,37.4450645 3.09051926,34.3936157 3.09051926,30.6294627 L3.09051926,27.813861 C3.09051926,25.604722 4.88138026,23.813861 7.09051926,23.813861 L14.0438552,23.813861 C14.1102948,23.813861 14.1763561,23.8154808 14.2420017,23.8186831 Z M20.7553776,32.160536 C23.9336213,32.1190063 23.9061943,29.4103976 33.8698747,31.1666916 C34.7935223,31.3295026 35.9925894,31.0627305 37.3154077,30.4407183 C37.09778,34.8980343 33.4149547,38.4450645 28.9036761,38.4450645 C24.9909035,38.4450645 21.701346,35.7767637 20.7553776,32.160536 Z"
+                            fill="currentColor" opacity="0.1"></path>
+                        <g transform="translate(2.000000, 3.000000)">
+                            <path
+                                d="M8.5,1 C4.35786438,1 1,4.35786438 1,8.5 L1,13 C1,14.6568542 2.34314575,16 4,16 L13,16 C14.6568542,16 16,14.6568542 16,13 L16,4 C16,2.34314575 14.6568542,1 13,1 L8.5,1 Z"
+                                stroke="currentColor" stroke-width="2"></path>
+                            <path
+                                d="M4,20 C2.34314575,20 1,21.3431458 1,23 L1,27.5 C1,31.6421356 4.35786438,35 8.5,35 L13,35 C14.6568542,35 16,33.6568542 16,32 L16,23 C16,21.3431458 14.6568542,20 13,20 L4,20 Z"
+                                stroke="currentColor" stroke-width="2"></path>
+                            <path
+                                d="M23,1 C21.3431458,1 20,2.34314575 20,4 L20,13 C20,14.6568542 21.3431458,16 23,16 L32,16 C33.6568542,16 35,14.6568542 35,13 L35,8.5 C35,4.35786438 31.6421356,1 27.5,1 L23,1 Z"
+                                stroke="currentColor" stroke-width="2"></path>
+                            <path
+                                d="M34.5825451,33.4769886 L38.3146092,33.4322291 C38.8602707,33.4256848 39.3079219,33.8627257 39.3144662,34.4083873 C39.3145136,34.4123369 39.3145372,34.4162868 39.3145372,34.4202367 L39.3145372,34.432158 C39.3145372,34.9797651 38.8740974,35.425519 38.3265296,35.4320861 L34.5944655,35.4768456 C34.048804,35.4833899 33.6011528,35.046349 33.5946085,34.5006874 C33.5945611,34.4967378 33.5945375,34.4927879 33.5945375,34.488838 L33.5945375,34.4769167 C33.5945375,33.9293096 34.0349773,33.4835557 34.5825451,33.4769886 Z"
+                                fill="currentColor"
+                                transform="translate(36.454537, 34.454537) rotate(-315.000000) translate(-36.454537, -34.454537) ">
+                            </path>
+                            <circle stroke="currentColor" stroke-width="2" cx="27.5" cy="27.5" r="7.5"></circle>
+                        </g>
+                    </g>
+                </svg>
+                <span class="tab tab-whishlist block text-xs">Whishlist</span>
+            </a>
+            <a href=#
+                class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
+                <svg width="25" height="25" viewBox="0 0 42 42" class="inline-block mb-1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <path
+                            d="M14.7118754,20.0876892 L8.03575361,20.0876892 C5.82661462,20.0876892 4.03575361,18.2968282 4.03575361,16.0876892 L4.03575361,12.031922 C4.03575361,8.1480343 6.79157254,4.90780265 10.4544842,4.15995321 C8.87553278,8.5612583 8.1226025,14.3600511 10.9452499,15.5413938 C13.710306,16.6986332 14.5947501,18.3118357 14.7118754,20.0876892 Z M14.2420017,23.8186831 C13.515543,27.1052019 12.7414284,30.2811559 18.0438552,31.7330419 L18.0438552,33.4450645 C18.0438552,35.6542035 16.2529942,37.4450645 14.0438552,37.4450645 L9.90612103,37.4450645 C6.14196811,37.4450645 3.09051926,34.3936157 3.09051926,30.6294627 L3.09051926,27.813861 C3.09051926,25.604722 4.88138026,23.813861 7.09051926,23.813861 L14.0438552,23.813861 C14.1102948,23.813861 14.1763561,23.8154808 14.2420017,23.8186831 Z M20.7553776,32.160536 C23.9336213,32.1190063 23.9061943,29.4103976 33.8698747,31.1666916 C34.7935223,31.3295026 35.9925894,31.0627305 37.3154077,30.4407183 C37.09778,34.8980343 33.4149547,38.4450645 28.9036761,38.4450645 C24.9909035,38.4450645 21.701346,35.7767637 20.7553776,32.160536 Z"
+                            fill="currentColor" opacity="0.1"></path>
+                        <g transform="translate(2.000000, 3.000000)">
+                            <path
+                                d="M8.5,1 C4.35786438,1 1,4.35786438 1,8.5 L1,13 C1,14.6568542 2.34314575,16 4,16 L13,16 C14.6568542,16 16,14.6568542 16,13 L16,4 C16,2.34314575 14.6568542,1 13,1 L8.5,1 Z"
+                                stroke="currentColor" stroke-width="2"></path>
+                            <path
+                                d="M4,20 C2.34314575,20 1,21.3431458 1,23 L1,27.5 C1,31.6421356 4.35786438,35 8.5,35 L13,35 C14.6568542,35 16,33.6568542 16,32 L16,23 C16,21.3431458 14.6568542,20 13,20 L4,20 Z"
+                                stroke="currentColor" stroke-width="2"></path>
+                            <path
+                                d="M23,1 C21.3431458,1 20,2.34314575 20,4 L20,13 C20,14.6568542 21.3431458,16 23,16 L32,16 C33.6568542,16 35,14.6568542 35,13 L35,8.5 C35,4.35786438 31.6421356,1 27.5,1 L23,1 Z"
+                                stroke="currentColor" stroke-width="2"></path>
+                            <path
+                                d="M34.5825451,33.4769886 L38.3146092,33.4322291 C38.8602707,33.4256848 39.3079219,33.8627257 39.3144662,34.4083873 C39.3145136,34.4123369 39.3145372,34.4162868 39.3145372,34.4202367 L39.3145372,34.432158 C39.3145372,34.9797651 38.8740974,35.425519 38.3265296,35.4320861 L34.5944655,35.4768456 C34.048804,35.4833899 33.6011528,35.046349 33.5946085,34.5006874 C33.5945611,34.4967378 33.5945375,34.4927879 33.5945375,34.488838 L33.5945375,34.4769167 C33.5945375,33.9293096 34.0349773,33.4835557 34.5825451,33.4769886 Z"
+                                fill="currentColor"
+                                transform="translate(36.454537, 34.454537) rotate(-315.000000) translate(-36.454537, -34.454537) ">
+                            </path>
+                            <circle stroke="currentColor" stroke-width="2" cx="27.5" cy="27.5" r="7.5"></circle>
+                        </g>
+                    </g>
+                </svg>
+                <span class="tab tab-account block text-xs">Account</span>
+            </a>
+        </div>
+    </section>
+
+
+    <div class="flex flex-nowrap">
+        <div class="xlarge:block large:block medium:hidden small:hidden sticky top-0 z-50 flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-sidebar border-r
+            dark:bg-gray-900 dark:border-gray-700 ">
+            <div class="flex flex-col items-center mt-6 -mx-2 text-sidebarLink">
+                <img class="object-cover w-40 h-40 mx-2 rounded-full border-8"
+                    src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+                    alt="avatar">
+                <h4 class="mx-2 mt-2 font-medium text-sidebarLink dark:text-gray-200">Priyank Patel</h4>
+                <div>
+                    <a href="#">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="flex flex-col justify-between flex-1 mt-6">
+                <nav>
+                    <a class="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-800 dark:text-gray-200"
+                        href="#home">
+                        <span class="mx-4 font-medium">Home</span>
+                    </a>
+
+                    <a class="flex items-center px-4 py-2 mt-5 text-sidebarLink transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                        href="#about">
+                        <span class="mx-4 font-medium">About Me</span>
+                    </a>
+
+                    <a class="flex items-center px-4 py-2 mt-5 text-sidebarLink transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                        href="#what-i-do">
+                        <span class="mx-4 font-medium">What I Do</span>
+                    </a>
+
+                    <a class="flex items-center px-4 py-2 mt-5 text-sidebarLink transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                        href="#resume">
+                        <span class="mx-4 font-medium">Resume</span>
+                    </a>
+
+                    <a class="flex items-center px-4 py-2 mt-5 text-sidebarLink transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                        href="#portfolio">
+                        <span class="mx-4 font-medium">Portfolio</span>
+                    </a>
+
+                    <a class="flex items-center px-4 py-2 mt-5 text-sidebarLink transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                        href="#testimonial">
+                        <span class="mx-4 font-medium">Testimonial</span>
+                    </a>
+
+                    <a class="flex items-center px-4 py-2 mt-5 text-sidebarLink transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                        href="#contact">
+                        <span class="mx-4 font-medium">Contact</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+
+        <div class="xl:hidden lg:hidden md:hidden sm:block sticky bottom-0 z-50 flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-sidebar border-r
+                    dark:bg-gray-900 dark:border-gray-700 ">
+            <div class="flex flex-row justify-between  mt-6">
+                <nav>
+                    <a class="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-800 dark:text-gray-200"
+                        href="#home">
+                        <span class="mx-4 font-medium">Home</span>
+                    </a>
+
+                    <a class="flex items-center px-4 py-2 mt-5 text-sidebarLink transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                        href="#about">
+                        <span class="mx-4 font-medium">About Me</span>
+                    </a>
+
+                    <a class="flex items-center px-4 py-2 mt-5 text-sidebarLink transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                        href="#what-i-do">
+                        <span class="mx-4 font-medium">What I Do</span>
+                    </a>
+
+                    <a class="flex items-center px-4 py-2 mt-5 text-sidebarLink transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                        href="#resume">
+                        <span class="mx-4 font-medium">Resume</span>
+                    </a>
+
+                    <a class="flex items-center px-4 py-2 mt-5 text-sidebarLink transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                        href="#portfolio">
+                        <span class="mx-4 font-medium">Portfolio</span>
+                    </a>
+
+                    <a class="flex items-center px-4 py-2 mt-5 text-sidebarLink transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                        href="#testimonial">
+                        <span class="mx-4 font-medium">Testimonial</span>
+                    </a>
+
+                    <a class="flex items-center px-4 py-2 mt-5 text-sidebarLink transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                        href="#contact">
+                        <span class="mx-4 font-medium">Contact</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+
+        <div id="home" class="container mx-auto">
+            <div class="bg-gray-100">
+                <section class="cover bg-blue-teal-gradient relative bg-black px-4 sm:px-8 lg:px-16 xl:px-40 2xl:px-64 overflow-hidden py-48 flex
+                  items-center w-full h-screen">
+                    <div class="w-full h-screen absolute top-0 left-0 z-0">
+                        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
+                            alt="" class="w-full h-screen object-cover opacity-20">
+                    </div>
+
+                    <div class="text-center relative z-10 h-100 lg:mx-auto">
+                        <div>
+                            <h5 class="font-roboto text-white text-4xl md:text-5xl xl:text-6xl font-bold leading-tight">
+                                Welcome</h5>
+                            <h1 class="text-white text-4xl md:text-5xl xl:text-6xl font-bold leading-tight">
+                                I am Priyank Patel</h1>
+                            <p class="text-blue-100 text-xl md:text-2xl leading-snug mt-4">based in Los Angeles,
+                                California.</p>
+                            <a href="#"
+                                class="px-8 py-4 bg-teal-500 text-white rounded inline-block mt-8 font-semibold">Book
+                                Appointment</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- section Starts -->
+            <Section id="about" class="relative p-[4.5rem] overflow-hidden">
+                <div class="container-xl pr-12 pl-12">
+
+                    <!-- Section Title -->
+                    <div class="relative flex text-center mb-12">
+                        <h2
+                            class="font-roboto text-sectionBackgroundText text-gray-100 uppercase w-full font-semibold mb-0">
+                            About Me
+                        </h2>
+                        <p class="text-4xl absolute w-full self-center mb-0 font-roboto font-medium">
+                            Know me more
+                            <span class="w-20 border-b-4 border-teal-400 block mr-auto ml-auto"></span>
+                        </p>
+                    </div>
+
+                    <!-- End of Section Title -->
+
+                    <div class="container flex flex-col items-center py-16 md:py-20 lg:flex-row">
+                        <div class="w-full text-center sm:w-3/4 lg:w-3/5 lg:text-left">
+                            <h2 class="font-roboto font-medium text-3xl">
+                                I'm
+                                <span class="text-blue-500">Priyank Patel,</span>
+                                a Full Stack Developer.
+                            </h2>
+                            <p class="pt-6 font-body leading-relaxed text-grey-20">I help you build brand for your
+                                business at an affordable price. Thousands of clients
+                                have procured exceptional results
+                                while working with our dedicated team. when an unknown printer took a galley of type and
+                                scrambled it to make a type
+                                specimen book.</p>
+                            <p class="pt-6 font-body leading-relaxed text-grey-20">Delivering work within time and
+                                budget which meets client’s requirements is our moto.
+                                Lorem Ipsum has been the
+                                industry's standard dummy text ever when an unknown printer took a galley. Lorem Ipsum
+                                has been the industry's standard
+                                dummy text ever when an unknown printer took a galley.</p>
+                        </div>
+                        <div class="w-full pl-0 pt-10 sm:w-3/4 lg:w-2/5 lg:pl-12 lg:pt-0">
+                            <div>
+                                <div class="flex items-end justify-between border-b-2 border-grey-900 pb-2">
+                                    <h4 class="font-body font-semibold text-black">
+                                        Name: Priyank Patel
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="flex items-end justify-between pt-2 pb-2 border-b-2 border-grey-900">
+                                <h4 class="font-body font-semibold text-black">
+                                    Email: priyank.patel118@gmai.com
+                                </h4>
+                            </div>
+
+                            <div class="flex items-end justify-between pt-2 pb-2 border-b-2 border-grey-900">
+                                <h4 class="font-body font-semibold text-black">
+                                    From: Detroit, MI
+                                </h4>
+                            </div>
+
+                            <div class="pt-2">
+
+                                <button
+                                    class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                                    <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20">
+                                        <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+                                    </svg>
+                                    <span>Download Resume</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Section>
+            <!-- End of Section -->
+
+
+            <!-- Starts What i do  -->
+            <section class="bg-gray-100">
+                <!-- Section Title -->
+                <div class="relative flex text-center">
+                    <h2
+                        class="font-roboto text-sectionBackgroundText text-gray-200 uppercase w-full font-semibold mb-0">
+                        Skills
+                    </h2>
+                    <p class="text-4xl absolute w-full self-center mb-0 font-roboto font-medium">
+                        What I know
+                        <span class="w-20 border-b-4 border-teal-400 block mr-auto ml-auto"></span>
+                    </p>
+                </div>
+                <!-- End of Section Title -->
+                <section class="text-gray-600 body-font p-[4.5rem] pt-0">
+                    <div class="container px-5 mx-auto">
+                        <div class="flex flex-wrap m-4 text-center">
+                            <div class="xl:w-1/4 md:w-1/2 p-4">
+                                <div class="border bg-blue-500 p-6 text-white rounded-lg">
+                                    <h2 class="text-2xl text-white-900 font-medium title-font mb-2">HTML5</h2>
+                                </div>
+                            </div>
+                            <div class="xl:w-1/4 md:w-1/2 p-4">
+                                <div class="border bg-blue-500 p-6 text-white rounded-lg">
+                                    <h2 class="text-2xl text-white-900 font-medium title-font mb-2">CSS3</h2>
+                                </div>
+                            </div>
+                            <div class="xl:w-1/4 md:w-1/2 p-4">
+                                <div class="border bg-blue-500 p-6 text-white rounded-lg">
+                                    <h2 class="text-2xl text-white-900 font-medium title-font mb-2">JavaScript</h2>
+                                </div>
+                            </div>
+                            <div class="xl:w-1/4 md:w-1/2 p-4">
+                                <div class="border bg-blue-500 p-6 text-white rounded-lg">
+                                    <h2 class="text-2xl text-white-900 font-medium title-font mb-2">JQuery</h2>
+                                </div>
+                            </div>
+                            <div class="xl:w-1/4 md:w-1/2 p-4">
+                                <div class="border bg-blue-500 p-6 text-white rounded-lg">
+                                    <h2 class="text-2xl text-white-900 font-medium title-font mb-2">ReactJs</h2>
+                                </div>
+                            </div>
+                            <div class="xl:w-1/4 md:w-1/2 p-4">
+                                <div class="border bg-blue-500 p-6 text-white rounded-lg">
+                                    <h2 class="text-2xl text-white-900 font-medium title-font mb-2">Angular</h2>
+                                </div>
+                            </div>
+                            <div class="xl:w-1/4 md:w-1/2 p-4">
+                                <div class="border bg-blue-500 p-6 text-white rounded-lg">
+                                    <h2 class="text-2xl text-white-900 font-medium title-font mb-2">.Net/MVC</h2>
+                                </div>
+                            </div>
+                            <div class="xl:w-1/4 md:w-1/2 p-4">
+                                <div class="border bg-blue-500 p-6 text-white rounded-lg">
+                                    <h2 class="text-2xl text-white-900 font-medium title-font mb-2">C#</h2>
+                                </div>
+                            </div>
+                            <div class="xl:w-1/4 md:w-1/2 p-4">
+                                <div class="border bg-blue-500 p-6 text-white rounded-lg">
+                                    <h2 class="text-2xl text-white-900 font-medium title-font mb-2">Bootstrap</h2>
+                                </div>
+                            </div>
+                            <div class="xl:w-1/4 md:w-1/2 p-4">
+                                <div class="border bg-blue-500 p-6 text-white rounded-lg">
+                                    <h2 class="text-2xl text-white-900 font-medium title-font mb-2">Tailwind</h2>
+                                </div>
+                            </div>
+                            <div class="xl:w-1/4 md:w-1/2 p-4">
+                                <div class="border bg-blue-500 p-6 text-white rounded-lg">
+                                    <h2 class="text-2xl text-white-900 font-medium title-font mb-2">SQL Server</h2>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </section>
+            </section>
+
+            <!-- End of What i do  -->
+
+            <!-- Start of Resume -->
+            <section>
+                <!-- Section Title -->
+                <div class="relative flex text-center">
+                    <h2
+                        class="font-roboto text-sectionBackgroundText text-gray-100 uppercase w-full font-semibold mb-0">
+                        Summary
+                    </h2>
+                    <p class="text-4xl absolute w-full self-center mb-0 font-roboto font-medium">
+                        Resume
+                        <span class="w-20 border-b-4 border-teal-400 block mr-auto ml-auto"></span>
+                    </p>
+                </div>
+
+                <div class="p-[4.5rem] pt-0">
+                    <div class="container pb-24 mx-auto">
+                        <div class="container-xl pr-12 pl-12">
+                            <div class="flex flex-col mb-4">
+                                <div class="flex flex-col items-center gap-x-8 rounded-md border p-5 md:flex-row">
+                                    <!-- <div class="shrink-0"><a href="/demo/astro-boilerplate"><img
+                                                class="h-36 w-36 hover:translate-y-1" src="https://picsum.photos/200"
+                                                alt="Project Web Design" loading="lazy"></a></div> -->
+                                    <div>
+                                        <div class="flex items-center gap-y-2 justify-between md:flex-row">
+                                            <div>
+                                                <p class="text-xl font-semibold font-roboto">The Physician Alliance</p>
+                                            </div>
+
+                                            <div class="bg-blue-500 px-2 rounded-lg text-white">
+                                                <p class="font-semibold text-sm capitalize p-0.5">june-2022 to july-2023
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <p class="text-blue-500 font-bold">Full Stack Developer</p>
+                                        <p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing
+                                            elit. Suspendisse
+                                            bibendum. Nunc non posuere consectetur, justo erat semper enim, non
+                                            hendrerit dui odio id enim.</p>
+
+                                        <div class="pt-2 font-roboto border-black flex gap-2">
+                                            <div
+                                                class="rounded-md px-2 py-1 text-xs hover:border-none font-semibold border border-blue-500 hover:bg-teal-500 hover:border-0 hover:text-white">
+                                                Astro.js
+                                            </div>
+                                            <div
+                                                class="rounded-md px-2 py-1 text-xs font-semibold border border-blue-500">
+                                                Web design
+                                            </div>
+                                            <div
+                                                class="rounded-md px-2 py-1 text-xs font-semibold border border-blue-500">
+                                                Tailwind.css
+                                            </div>
+                                            <div
+                                                class="rounded-md px-2 py-1 text-xs font-semibold border border-blue-500">
+                                                TypeScript
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col mb-4">
+                                <div class="flex flex-col items-center gap-x-8 rounded-md border p-5 md:flex-row">
+                                    <!-- <div class="shrink-0"><a href="/demo/astro-boilerplate"><img
+                                                                            class="h-36 w-36 hover:translate-y-1" src="https://picsum.photos/200"
+                                                                            alt="Project Web Design" loading="lazy"></a></div> -->
+                                    <div>
+                                        <div class="flex items-center gap-y-2 justify-between md:flex-row">
+                                            <div>
+                                                <p class="text-xl font-semibold font-roboto">The Physician Alliance</p>
+                                            </div>
+
+                                            <div class="bg-blue-500 px-2 rounded-lg text-white">
+                                                <p class="font-semibold text-sm capitalize p-0.5">june-2022 to july-2023
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <p class="text-blue-500 font-bold">Full Stack Developer</p>
+                                        <p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing
+                                            elit. Suspendisse
+                                            bibendum. Nunc non posuere consectetur, justo erat semper enim, non
+                                            hendrerit dui odio id enim.</p>
+
+                                        <div class="pt-2 font-roboto border-black flex gap-2">
+                                            <div
+                                                class="rounded-md px-2 py-1 text-xs hover:border-none font-semibold border border-blue-500 hover:bg-teal-500 hover:border-0 hover:text-white">
+                                                Astro.js
+                                            </div>
+                                            <div
+                                                class="rounded-md px-2 py-1 text-xs font-semibold border border-blue-500">
+                                                Web design
+                                            </div>
+                                            <div
+                                                class="rounded-md px-2 py-1 text-xs font-semibold border border-blue-500">
+                                                Tailwind.css
+                                            </div>
+                                            <div
+                                                class="rounded-md px-2 py-1 text-xs font-semibold border border-blue-500">
+                                                TypeScript
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Section Title -->
+            </section>
+            <!-- End of Resume -->
+
+            <!-- Portfolio Work Starts -->
+            <section class="bg-gray-100">
+                <div class="relative flex text-center">
+                    <h2
+                        class="font-roboto text-sectionBackgroundText text-gray-200 uppercase w-full font-semibold mb-0">
+                        Portfolio
+                    </h2>
+                    <p class="text-4xl absolute w-full self-center mb-0 font-roboto font-medium">
+                        My Work
+                        <span class="w-20 border-b-4 border-teal-400 block mr-auto ml-auto"></span>
+                    </p>
+                </div>
+
+                <div class="text-center mb-10">
+                    <ul class="justify-center lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
+                        <li><a class="text-lg text-gray-400 hover:text-gray-500 active:bg-blue-500">All</a>
+                        </li>
+                        <li><a class="text-lg text-gray-400 hover:text-gray-500" href="#">Angular</a></li>
+                        <li><a class="text-lg text-gray-400 hover:text-gray-500" href="#">React</a></li>
+                    </ul>
+                </div>
+
+                <div class="p-[4.5rem] pt-0">
+                    <div class="container-xl pr-12 pl-12">
+                        <div class="flex flex-wrap -m-4">
+                            <div class="lg:w-1/3 sm:w-1/2 p-4">
+                                <div class="flex relative">
+                                    <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
+                                        src="https://dummyimage.com/600x360">
+                                    <div
+                                        class="px-8 py-10 relative z-10 w-full border-4 border-gray-200 bg-white opacity-0 hover:opacity-100">
+                                        <h2 class="tracking-widest text-sm title-font font-medium text-indigo-500 mb-1">
+                                            THE SUBTITLE</h2>
+                                        <h1 class="title-font text-lg font-medium text-gray-900 mb-3">Shooting Stars
+                                        </h1>
+                                        <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha
+                                            leggings jianbing microdosing
+                                            tousled waistcoat.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lg:w-1/3 sm:w-1/2 p-4">
+                                <div class="flex relative">
+                                    <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
+                                        src="https://dummyimage.com/601x361">
+                                    <div
+                                        class="px-8 py-10 relative z-10 w-full border-4 border-gray-200 bg-white opacity-0 hover:opacity-100">
+                                        <h2 class="tracking-widest text-sm title-font font-medium text-indigo-500 mb-1">
+                                            THE SUBTITLE</h2>
+                                        <h1 class="title-font text-lg font-medium text-gray-900 mb-3">The Catalyzer</h1>
+                                        <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha
+                                            leggings jianbing microdosing
+                                            tousled waistcoat.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lg:w-1/3 sm:w-1/2 p-4">
+                                <div class="flex relative">
+                                    <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
+                                        src="https://dummyimage.com/603x363">
+                                    <div
+                                        class="px-8 py-10 relative z-10 w-full border-4 border-gray-200 bg-white opacity-0 hover:opacity-100">
+                                        <h2 class="tracking-widest text-sm title-font font-medium text-indigo-500 mb-1">
+                                            THE SUBTITLE</h2>
+                                        <h1 class="title-font text-lg font-medium text-gray-900 mb-3">The 400 Blows</h1>
+                                        <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha
+                                            leggings jianbing microdosing
+                                            tousled waistcoat.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lg:w-1/3 sm:w-1/2 p-4">
+                                <div class="flex relative">
+                                    <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
+                                        src="https://dummyimage.com/602x362">
+                                    <div
+                                        class="px-8 py-10 relative z-10 w-full border-4 border-gray-200 bg-white opacity-0 hover:opacity-100">
+                                        <h2 class="tracking-widest text-sm title-font font-medium text-indigo-500 mb-1">
+                                            THE SUBTITLE</h2>
+                                        <h1 class="title-font text-lg font-medium text-gray-900 mb-3">Neptune</h1>
+                                        <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha
+                                            leggings jianbing microdosing
+                                            tousled waistcoat.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lg:w-1/3 sm:w-1/2 p-4">
+                                <div class="flex relative">
+                                    <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
+                                        src="https://dummyimage.com/605x365">
+                                    <div
+                                        class="px-8 py-10 relative z-10 w-full border-4 border-gray-200 bg-white opacity-0 hover:opacity-100">
+                                        <h2 class="tracking-widest text-sm title-font font-medium text-indigo-500 mb-1">
+                                            THE SUBTITLE</h2>
+                                        <h1 class="title-font text-lg font-medium text-gray-900 mb-3">Holden Caulfield
+                                        </h1>
+                                        <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha
+                                            leggings jianbing microdosing
+                                            tousled waistcoat.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lg:w-1/3 sm:w-1/2 p-4">
+                                <div class="flex relative">
+                                    <img alt="gallery" class="absolute inset-0 w-full h-full object-cover object-center"
+                                        src="https://dummyimage.com/606x366">
+                                    <div
+                                        class="px-8 py-10 relative z-10 w-full border-4 border-gray-200 bg-white opacity-0 hover:opacity-100">
+                                        <h2 class="tracking-widest text-sm title-font font-medium text-indigo-500 mb-1">
+                                            THE SUBTITLE</h2>
+                                        <h1 class="title-font text-lg font-medium text-gray-900 mb-3">Alper Kamu</h1>
+                                        <p class="leading-relaxed">Photo booth fam kinfolk cold-pressed sriracha
+                                            leggings jianbing microdosing
+                                            tousled waistcoat.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </section>
+            <!-- Portfolio Work End -->
+
+            <!-- Start Contact Us Form -->
+            <section>
+                <div class="relative flex text-center">
+                    <h2
+                        class="font-roboto text-sectionBackgroundText text-gray-100 uppercase w-full font-semibold mb-0">
+                        Contact
+                    </h2>
+                    <p class="text-4xl absolute w-full self-center mb-0 font-roboto font-medium">
+                        Get In Touch
+                        <span class="w-20 border-b-4 border-teal-400 block mr-auto ml-auto"></span>
+                    </p>
+                </div>
+
+                <div class="lg:w-1/2 md:w-2/3 mx-auto">
+                    <div class="flex flex-wrap -m-2">
+                        <div class="p-2 w-1/2">
+                            <div class="relative">
+                                <label for="name" class="leading-7 text-sm text-gray-600">Name</label>
+                                <input type="text" id="name" name="name"
+                                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            </div>
+                        </div>
+                        <div class="p-2 w-1/2">
+                            <div class="relative">
+                                <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
+                                <input type="email" id="email" name="email"
+                                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            </div>
+                        </div>
+                        <div class="p-2 w-full">
+                            <div class="relative">
+                                <label for="message" class="leading-7 text-sm text-gray-600">Message</label>
+                                <textarea id="message" name="message"
+                                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                                    data-gramm="false" wt-ignore-input="true"></textarea>
+                            </div>
+                        </div>
+                        <div class="p-2 w-full">
+                            <button
+                                class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- End Contact Us Form -->
+
+
+
+
+        </div>
+    </div>
+
+</body>
+
+
+</html>
