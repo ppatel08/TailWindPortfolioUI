@@ -21,7 +21,7 @@
             theme: {
                 extend: {
                     screens: {
-                        'small': { 'min': '360px', 'max': '767px' },
+                        'small': { 'max': '767px' },
                         // => @media (min-width: 640px and max-width: 767px) { ... }
 
                         'medium': { 'min': '768px', 'max': '1023px' },
@@ -30,7 +30,8 @@
                         'large': { 'min': '1024px', 'max': '1279px' },
                         // => @media (min-width: 1024px and max-width: 1279px) { ... }
 
-                        'xlarge': { 'min': '1280px' },
+                        'xlarge': { 'min': '1280px', 'max': '1536px' },
+                        '2xlarge': { 'min': '1537px' }
 
                     },
                     colors: {
@@ -68,7 +69,7 @@
     <!-- component -->
     <!-- <section id="bottom-navigation" class="md:hidden block fixed inset-x-0 bottom-0 z-10 bg-white shadow"> // if shown only tablet/mobile-->
     <section id="bottom-navigation"
-        class="xlarge:hidden large:hidden medium:visible small:visible  fixed inset-x-0 bottom-0 z-10 bg-white shadow">
+        class="xlarge:hidden xlarge:hidden large:hidden medium:visible small:visible  fixed inset-x-0 bottom-0 z-10 bg-white shadow">
         <div id="tabs" class="flex justify-between">
             <a href="#"
                 class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
@@ -199,7 +200,7 @@
 
 
     <div class="flex flex-nowrap">
-        <div class="xlarge:block large:block medium:hidden small:hidden sticky top-0 z-50 flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-sidebar border-r
+        <div class="2xlarge:block 2xlarge:w-96  xlarge:block large:block medium:hidden small:hidden sticky top-0 z-50 flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-sidebar border-r
             dark:bg-gray-900 dark:border-gray-700 ">
             <div class="flex flex-col items-center mt-6 -mx-2 text-sidebarLink">
                 <img class="object-cover w-40 h-40 mx-2 rounded-full border-8"
@@ -261,7 +262,7 @@
         </div>
 
 
-        <div id="home" class="container mx-auto">
+        <div id="home" class="xlarge:container large:container  mx-auto ">
             <div class="bg-gray-100">
                 <section class="cover bg-blue-teal-gradient relative bg-black px-4 sm:px-8 lg:px-16 xl:px-40 2xl:px-64 overflow-hidden py-48 flex
                   items-center w-full h-screen">
@@ -270,7 +271,7 @@
                             alt="" class="w-full h-screen object-cover opacity-20">
                     </div>
 
-                    <div class="text-center relative z-10 h-100 lg:mx-auto">
+                    <div class="text-center relative z-10 h-100 lg:mx-auto medium:mx-auto small:mx-auto">
                         <div>
                             <h5 class="font-roboto text-white text-4xl md:text-5xl xl:text-6xl font-bold leading-tight">
                                 Welcome</h5>
